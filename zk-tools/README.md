@@ -19,7 +19,7 @@
 此注册器优先使用最小的**未被占用**的全局id，从而尽最大可能保证已分配过的全局id至少存在一个实例与之对应。
 > 注：正常情况下，一个全局id仅对应一个实例。但允许存在一个异常的冲突情况是：一个已经注册过的实例由于网络原因而失去与zookeeper的连接，于此同时另一个实例又进行注册id，此时两个实例将会共用同一个全局id（如下图第5-8步），默认情况下旧实例的心跳检查会对此情况抛出ZktException异常。你可以自行扩展SequentialReusableIdRegistry.HeartbeatHandler来决定在旧实例中如何处理这种冲突情况。
 
-![注册冲突的过程](https://raw.githubusercontent.com/waltertan1988/zk-tools/main/doc/design/registry/SequentialReusableIdRegistry_heartbeat.png "SequentialReusableIdRegistry_heartbeat.png")
+![注册冲突的过程](https://github.com/waltertan1988/common-tools/blob/main/zk-tools/doc/design/registry/SequentialReusableIdRegistry_heartbeat.png?raw=true "SequentialReusableIdRegistry_heartbeat.png")
 
 1.2.1.1 Zookeeper中的数据结构
 ```
@@ -37,7 +37,7 @@
 
 1.2.1.2 应用场景
 * MQ分区路由的顺序性保证（以RabbitMQ为例）
-![RabbitMQ](https://raw.githubusercontent.com/waltertan1988/zk-tools/main/doc/design/registry/SequentialReusableIdRegistry.png "SequentialReusableIdRegistry.png")
+![RabbitMQ](https://github.com/waltertan1988/common-tools/blob/main/zk-tools/doc/design/registry/SequentialReusableIdRegistry.png?raw=true "SequentialReusableIdRegistry.png")
 
 ##### 1.2.2 SequentialUniqueIdRegistry
 用于分配和管理顺序增长（从0开始）的唯一全局实例id。
@@ -55,4 +55,4 @@
 * 雪花算法的workerId
 
 #### 1.3 开始使用
-参看：[这里](https://github.com/waltertan1988/zk-tools/tree/main/src/test/java/com/walter/zkt/registry)
+参看：[使用范例](https://github.com/waltertan1988/common-tools/tree/main/zk-tools/src/test/java/com/walter/zkt/registry)

@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>common-tools</name>
-	<description>some usefull tools</description>
+	<description>some useful tools</description>
 
     <modules>
         <module>common-thread-pool</module>
