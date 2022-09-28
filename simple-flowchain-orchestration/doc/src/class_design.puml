@@ -1,0 +1,35 @@
+@startuml
+abstract class AbstractChain {
+  - chainNodeList : List<AbstractChainNode>
+  - chainNodeParamResolverMap : Map<Class<? extends AbstractChainNode>, NodeParamResolver>
+  + start(ChainContext context) : void
+  # preProcessChain(ChainContext context) : void
+  # postProcessChain(ChainContext context) : void
+  # defineChainNodeList() : List<AbstractChainNode>
+  # {abstract} registChainNodeParamResolver(Map<Class<? extends AbstractChainNode>, NodeParamResolver> chainNodeParamResolverMap) : void
+}
+
+abstract class AbstractChainNode<I, R> {
+    + {abstract} handle(ChainContext context, I req) : R
+    + postHandle(ChainContext context) : void
+    + postHandle(ChainContext context) : void
+    + getRequestContextKey() : String
+    + getResponseContextKey() : String
+}
+
+interface NodeParamResolver{
+    + {abstract} resolve(ChainContext context) : void
+}
+
+class ChainContext{
+    + put(String key, Object val) : Object
+    + get(String key) : Object
+}
+
+AbstractChain "1" *-- "N" AbstractChainNode
+AbstractChain "1" *-- "M" NodeParamResolver
+AbstractChain ..> ChainContext
+AbstractChainNode ..> ChainContext
+NodeParamResolver ..> ChainContext
+
+@enduml
