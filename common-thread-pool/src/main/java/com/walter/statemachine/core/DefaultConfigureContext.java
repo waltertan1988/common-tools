@@ -1,4 +1,4 @@
-package com.walter.concurrent.core;
+package com.walter.statemachine.core;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

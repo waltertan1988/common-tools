@@ -1,7 +1,7 @@
-package com.walter.concurrent.test;
+package com.walter.statemachine;
 
-import com.walter.concurrent.core.CustomThreadPool;
-import com.walter.concurrent.core.ThreadPoolFactory;
+import com.walter.statemachine.core.CustomThreadPool;
+import com.walter.statemachine.core.ThreadPoolFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;

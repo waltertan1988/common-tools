@@ -1,8 +1,8 @@
-package com.walter.concurrent;
+package com.walter.statemachine;
 
-import com.walter.concurrent.core.ConfigureContext;
-import com.walter.concurrent.core.DefaultConfigureContext;
-import com.walter.concurrent.core.ThreadPoolFactory;
+import com.walter.statemachine.core.ConfigureContext;
+import com.walter.statemachine.core.DefaultConfigureContext;
+import com.walter.statemachine.core.ThreadPoolFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,7 +1,7 @@
 /**
  * BaseTests.java 2018年10月13日
  */
-package com.walter.concurrent.test;
+package com.walter.statemachine;
 
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.walter.concurrent;
+package com.walter.statemachine;
 
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
