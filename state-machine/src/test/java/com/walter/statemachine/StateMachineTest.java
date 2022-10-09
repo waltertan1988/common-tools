@@ -1,8 +1,5 @@
-package com.walter.threadpool;
+package com.walter.statemachine;
 
-import com.walter.statemachine.AbstractStateHandler;
-import com.walter.statemachine.AbstractStateMachine;
-import com.walter.statemachine.StateMachineReq;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.junit.Assert;
 import org.junit.Before;
