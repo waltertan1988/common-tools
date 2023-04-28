@@ -2,6 +2,7 @@ package com.walter.orchestration.base;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * @author tyx
@@ -18,5 +19,9 @@ public class ChainContext {
 
     public Object get(String key){
         return ctxMap.get(key);
+    }
+    
+    public Object computeIfAbsent(String key, Function<String, Object> mappingFunction) {
+        return ctxMap.computeIfAbsent(key, mappingFunction);
     }
 }
