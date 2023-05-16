@@ -22,4 +22,8 @@ mysql -uroot -p el_shop_emall < dump.el_shop_emall.orders.sql
 此阶段下，所有用户都使用新版app
 
 ## 开始使用
-* 参考：[Canal Client使用范例](https://github.com/waltertan1988/common-tools/blob/main/database-sharding-migration/src/test/java/com/walter/dsm/ApplicationTest.java)
+* Step1: 启动SpringBoot应用进程：com.walter.dsm.Application  
+* Step2: DML触发el_shop_emall.orders表的变更  
+
+## 其他参考
+* [Canal Client使用范例](https://github.com/waltertan1988/common-tools/blob/main/database-sharding-migration/src/test/java/com/walter/dsm/ApplicationTest.java)  

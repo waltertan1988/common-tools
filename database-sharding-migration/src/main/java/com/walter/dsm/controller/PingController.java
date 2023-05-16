@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/ping")
 public class PingController {
-    
+
     /**
      * 测试服务是否正常启动
      * @return
