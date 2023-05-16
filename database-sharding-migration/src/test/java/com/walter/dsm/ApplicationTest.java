@@ -11,6 +11,7 @@ import com.alibaba.otter.canal.protocol.CanalEntry.EventType;
 import com.alibaba.otter.canal.protocol.CanalEntry.RowChange;
 import com.alibaba.otter.canal.protocol.CanalEntry.RowData;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.net.InetSocketAddress;
 import java.util.List;
@@ -20,15 +21,21 @@ import java.util.List;
  * @date 2022-09-26 20:36
  */
 public class ApplicationTest extends BaseTests{
+    @Value("${canal.server.ip}")
+    private String canalServerIp;
 
+    @Value("${canal.server.port:11111}")
+    private int canalServerPort;
+    
     /**
      * Canal客户端
      */
     @Test
     public void canalClient(){
         // 创建链接
-        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(AddressUtils.getHostIp(),
-                11111), "example", "", "");
+//        String canalServerIp = AddressUtils.getHostIp();
+        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(canalServerIp,
+                canalServerPort), "example", "", "");
         int batchSize = 1000;
         int emptyCount = 0;
         try {
