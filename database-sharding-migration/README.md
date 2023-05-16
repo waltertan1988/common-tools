@@ -10,6 +10,9 @@ MySQL平滑迁移数据到分库分表中
 ```
 # 全量导出数据（含binlog位置）
 mysqldump -uroot -p el_shop_emall orders --single-transaction --flush-logs --master-data > el_shop_emall.orders.sql
+
+# 全量导入数据
+mysql -uroot -p el_shop_emall < dump.el_shop_emall.orders.sql
 ```
 
 * 阶段2：对旧DB的增量数据进行持续迁移，新旧DB、新旧版本app同时工作  
