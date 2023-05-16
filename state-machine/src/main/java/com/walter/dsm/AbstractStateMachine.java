@@ -1,4 +1,4 @@
-package com.walter.statemachine;
+package com.walter.dsm;
 
 import org.apache.commons.lang3.tuple.Pair;
 

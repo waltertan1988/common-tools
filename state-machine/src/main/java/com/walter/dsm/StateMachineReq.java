@@ -1,4 +1,4 @@
-package com.walter.statemachine;
+package com.walter.dsm;
 
 /**
  * @author walter.tan
