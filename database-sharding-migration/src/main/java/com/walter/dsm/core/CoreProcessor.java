@@ -13,10 +13,7 @@ import org.springframework.util.Assert;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.net.InetSocketAddress;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author walter.tan
@@ -41,9 +38,7 @@ public class CoreProcessor {
         Map<String, BinlogHandler> tempMap = new HashMap<>();
 
         for (BinlogHandler handler : binlogHandlerList) {
-            Entity entity = handler.getClass().getAnnotation(Entity.class);
-            Assert.notNull(entity, handler.getClass().getName() + " has not Entity annotation");
-            tempMap.put(this.getBinlogHandlerKey(entity.database(), entity.table()), handler);
+            tempMap.put(this.getBinlogHandlerKey(handler.supportDatabaseName(), handler.supportTableName()), handler);
         }
 
         binlogHandlerMap = Collections.unmodifiableMap(tempMap);
@@ -126,6 +121,7 @@ public class CoreProcessor {
 
             String handlerKey = this.getBinlogHandlerKey(entry.getHeader().getSchemaName(), entry.getHeader().getTableName());
             BinlogHandler binlogHandler = binlogHandlerMap.get(handlerKey);
+            Assert.notNull(binlogHandler, "cannot find BinlogHandler");
             binlogHandler.handler(rowChange);
         }
     }

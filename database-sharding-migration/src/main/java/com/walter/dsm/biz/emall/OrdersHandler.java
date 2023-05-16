@@ -2,7 +2,6 @@ package com.walter.dsm.biz.emall;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.walter.dsm.core.BinlogHandler;
-import com.walter.dsm.core.Entity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,17 @@ import java.util.List;
  */
 @Slf4j
 @Component
-@Entity(database = "el_shop_emall", table = "orders")
 public class OrdersHandler implements BinlogHandler {
+
+    @Override
+    public String supportDatabaseName() {
+        return "el_shop_emall";
+    }
+
+    @Override
+    public String supportTableName() {
+        return "orders";
+    }
 
     @Override
     public void handler(CanalEntry.RowChange rowChange) {
