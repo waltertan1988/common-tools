@@ -43,15 +43,27 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Canal相关依赖 -->
+			<dependency>
 				<groupId>com.alibaba.otter</groupId>
 				<artifactId>canal.client</artifactId>
 				<version>1.1.6</version>
 			</dependency>
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.12</version>
-				<scope>test</scope>
+				<groupId>com.alibaba.otter</groupId>
+				<artifactId>canal.common</artifactId>
+				<version>1.1.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.otter</groupId>
+				<artifactId>canal.protocol</artifactId>
+				<version>1.1.6</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
