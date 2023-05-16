@@ -26,7 +26,10 @@ public class ApplicationTest extends BaseTests{
 
     @Value("${canal.server.port:11111}")
     private int canalServerPort;
-    
+
+    // 统计执行的记录行数
+    private static long total = 0;
+
     /**
      * Canal客户端
      */
@@ -49,7 +52,7 @@ public class ApplicationTest extends BaseTests{
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
                     emptyCount++;
-                    System.out.println("empty count : " + emptyCount);
+                    System.out.println(String.format("empty count: %s, total: %s", emptyCount, total));
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -65,6 +68,7 @@ public class ApplicationTest extends BaseTests{
             }
 
             System.out.println("empty too many times, exit");
+            System.out.println("total=" + total);
         } finally {
             connector.disconnect();
         }
@@ -91,6 +95,7 @@ public class ApplicationTest extends BaseTests{
                     eventType));
 
             for (RowData rowData : rowChage.getRowDatasList()) {
+                total++;
                 if (eventType == EventType.DELETE) {
                     printColumn(rowData.getBeforeColumnsList());
                 } else if (eventType == EventType.INSERT) {
