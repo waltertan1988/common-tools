@@ -1,4 +1,4 @@
-package com.walter.dsm.core;
+package com.walter.dsm.core.canal;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
 

@@ -1,7 +1,7 @@
-package com.walter.dsm.biz.emall;
+package com.walter.dsm.biz.canal.emall;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
-import com.walter.dsm.core.BinlogHandler;
+import com.walter.dsm.core.canal.BinlogHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

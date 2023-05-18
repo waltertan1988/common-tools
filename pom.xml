@@ -22,6 +22,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<canal.version>1.1.6</canal.version>
+		<debezium.version>1.5.4.Final</debezium.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -53,17 +55,29 @@
 			<dependency>
 				<groupId>com.alibaba.otter</groupId>
 				<artifactId>canal.client</artifactId>
-				<version>1.1.6</version>
+				<version>${canal.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba.otter</groupId>
 				<artifactId>canal.common</artifactId>
-				<version>1.1.6</version>
+				<version>${canal.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba.otter</groupId>
 				<artifactId>canal.protocol</artifactId>
-				<version>1.1.6</version>
+				<version>${canal.version}</version>
+			</dependency>
+
+			<!-- Debezium相关依赖 -->
+			<dependency>
+				<groupId>io.debezium</groupId>
+				<artifactId>debezium-embedded</artifactId>
+				<version>${debezium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.debezium</groupId>
+				<artifactId>debezium-connector-mysql</artifactId>
+				<version>${debezium.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

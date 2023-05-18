@@ -60,6 +60,16 @@
 			<groupId>com.alibaba.otter</groupId>
 			<artifactId>canal.protocol</artifactId>
 		</dependency>
+
+		<!-- Debezium相关依赖 -->
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-embedded</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.debezium</groupId>
+			<artifactId>debezium-connector-mysql</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
