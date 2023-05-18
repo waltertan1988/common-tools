@@ -6,6 +6,7 @@ import io.debezium.engine.DebeziumEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -18,6 +19,23 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class DebeziumTest extends BaseTests{
+    @Value("${app.debezium.database.host}")
+    private String debeziumDatabaseHost;
+
+    @Value("${app.debezium.database.port}")
+    private String debeziumDatabasePort;
+
+    @Value("${app.debezium.database.user}")
+    private String debeziumDatabaseUser;
+
+    @Value("${app.debezium.database.password}")
+    private String debeziumDatabasePassword;
+
+    @Value("${app.debezium.database.serverId}")
+    private String debeziumDatabaseServerId;
+
+    @Value("${app.debezium.data.dir}")
+    private String debeziumDataDir;
 
     @Test
     public void embeddedServerTest() throws InterruptedException {
@@ -25,18 +43,18 @@ public class DebeziumTest extends BaseTests{
                 /* begin engine properties */
                 .with("connector.class", "io.debezium.connector.mysql.MySqlConnector")
                 .with("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore")
-                .with("offset.storage.file.filename", "C:/work/temp/debezium/offset.dat")
+                .with("offset.storage.file.filename", debeziumDataDir + "/offset.dat")
                 .with("offset.flush.interval.ms", 60000)
                 /* begin connector properties */
                 .with("name", "my-sql-connector")
-                .with("database.hostname", "192.168.10.14")
-                .with("database.port", 3306)
-                .with("database.user", "root")
-                .with("database.password", "123456")
-                .with("database.server.id", 85744)
+                .with("database.hostname", debeziumDatabaseHost)
+                .with("database.port", debeziumDatabasePort)
+                .with("database.user", debeziumDatabaseUser)
+                .with("database.password", debeziumDatabasePassword)
+                .with("database.server.id", debeziumDatabaseServerId)
                 .with("database.server.name", "my-app-connector")
                 .with("database.history", "io.debezium.relational.history.FileDatabaseHistory")
-                .with("database.history.file.filename", "C:/work/temp/debezium/dbhistory.dat")
+                .with("database.history.file.filename", debeziumDataDir + "/dbhistory.dat")
                 .build();
 
         // Create the engine with this configuration ...
