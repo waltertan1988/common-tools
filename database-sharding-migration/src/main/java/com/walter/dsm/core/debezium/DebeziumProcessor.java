@@ -20,6 +20,8 @@ public class DebeziumProcessor extends AbstractCdcProcessor {
 
     @Override
     public void run() {
+        // 参考https://debezium.io/documentation/reference/1.4/operations/embedded.html
+
 
     }
 }

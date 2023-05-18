@@ -2,14 +2,8 @@ package com.walter.dsm;
 
 import com.alibaba.otter.canal.client.CanalConnector;
 import com.alibaba.otter.canal.client.CanalConnectors;
-import com.alibaba.otter.canal.common.utils.AddressUtils;
+import com.alibaba.otter.canal.protocol.CanalEntry.*;
 import com.alibaba.otter.canal.protocol.Message;
-import com.alibaba.otter.canal.protocol.CanalEntry.Column;
-import com.alibaba.otter.canal.protocol.CanalEntry.Entry;
-import com.alibaba.otter.canal.protocol.CanalEntry.EntryType;
-import com.alibaba.otter.canal.protocol.CanalEntry.EventType;
-import com.alibaba.otter.canal.protocol.CanalEntry.RowChange;
-import com.alibaba.otter.canal.protocol.CanalEntry.RowData;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -20,7 +14,7 @@ import java.util.List;
  * @author walter.tan
  * @date 2022-09-26 20:36
  */
-public class ApplicationTest extends BaseTests{
+public class CanalTest extends BaseTests {
     @Value("${canal.server.ip}")
     private String canalServerIp;
 
@@ -34,7 +28,7 @@ public class ApplicationTest extends BaseTests{
      * Canal客户端
      */
     @Test
-    public void canalClient(){
+    public void clientTest(){
         // 创建链接
 //        String canalServerIp = AddressUtils.getHostIp();
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress(canalServerIp,

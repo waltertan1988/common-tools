@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-
     @Value("${app.onboot.cdcType}")
     private String onBootCdcType;
 
@@ -34,7 +34,10 @@ public class AdminController {
             tempMap.put(p.supportCdcType().name(), p);
         }
         cdcProcessorMap = Collections.unmodifiableMap(tempMap);
+    }
 
+    @PostConstruct
+    public void postConstruct(){
         // 自启动CDC服务线程
         Optional.ofNullable(cdcProcessorMap.get(onBootCdcType)).ifPresent(AbstractCdcProcessor::start);
     }
