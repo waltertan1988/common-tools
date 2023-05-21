@@ -31,18 +31,18 @@ public class CanalProcessor extends AbstractCdcProcessor {
     @Value("${app.canal.server.port:11111}")
     private int canalServerPort;
 
-    private final Map<String, BinlogHandler> binlogHandlerMap;
+    private final Map<String, BinlogCanalHandler> binlogCanalHandlerMap;
 
     private static final int batchSize = 1000;
 
-    public CanalProcessor(@Autowired List<BinlogHandler> binlogHandlerList){
-        Map<String, BinlogHandler> tempMap = new HashMap<>();
+    public CanalProcessor(@Autowired List<BinlogCanalHandler> binlogHandlerList){
+        Map<String, BinlogCanalHandler> tempMap = new HashMap<>();
 
-        for (BinlogHandler handler : binlogHandlerList) {
+        for (BinlogCanalHandler handler : binlogHandlerList) {
             tempMap.put(this.getBinlogHandlerKey(handler.supportDatabaseName(), handler.supportTableName()), handler);
         }
 
-        binlogHandlerMap = Collections.unmodifiableMap(tempMap);
+        binlogCanalHandlerMap = Collections.unmodifiableMap(tempMap);
     }
 
     @Override
@@ -83,10 +83,6 @@ public class CanalProcessor extends AbstractCdcProcessor {
         }
     }
 
-    private String getBinlogHandlerKey(String database, String table){
-        return database + "." + table;
-    }
-
     private void handleEntries(List<CanalEntry.Entry> entries){
         for (CanalEntry.Entry entry : entries) {
             if (entry.getEntryType() == CanalEntry.EntryType.TRANSACTIONBEGIN || entry.getEntryType() == CanalEntry.EntryType.TRANSACTIONEND) {
@@ -101,9 +97,9 @@ public class CanalProcessor extends AbstractCdcProcessor {
             }
 
             String handlerKey = this.getBinlogHandlerKey(entry.getHeader().getSchemaName(), entry.getHeader().getTableName());
-            BinlogHandler binlogHandler = binlogHandlerMap.get(handlerKey);
-            Assert.notNull(binlogHandler, "cannot find BinlogHandler");
-            binlogHandler.handler(rowChange);
+            BinlogCanalHandler binlogCanalHandler = binlogCanalHandlerMap.get(handlerKey);
+            Assert.notNull(binlogCanalHandler, "cannot find BinlogCanalHandler");
+            binlogCanalHandler.handler(rowChange);
         }
     }
 }

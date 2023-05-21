@@ -40,4 +40,8 @@ public abstract class AbstractCdcProcessor implements Runnable {
     public void preDestroy(){
         this.stop();
     }
+
+    protected String getBinlogHandlerKey(String database, String table){
+        return database + "." + table;
+    }
 }

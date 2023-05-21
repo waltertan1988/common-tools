@@ -1,23 +1,12 @@
 package com.walter.dsm.core.canal;
 
 import com.alibaba.otter.canal.protocol.CanalEntry;
+import com.walter.dsm.core.BinlogHandler;
 
 /**
  * @author walter.tan
  */
-public interface BinlogHandler {
-
-    /**
-     * 支持的数据库名称
-     * @return
-     */
-    String supportDatabaseName();
-
-    /**
-     * 支持的数据表名称
-     * @return
-     */
-    String supportTableName();
+public interface BinlogCanalHandler extends BinlogHandler {
 
     /**
      * 处理一批binlog变更记录
