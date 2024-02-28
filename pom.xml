@@ -17,6 +17,7 @@
 		<module>simple-flowchain-orchestration</module>
 		<module>state-machine</module>
 		<module>database-sharding-migration</module>
+		<module>composite-cache</module>
     </modules>
 
 	<properties>
